@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Endodontics (Root Canal Therapy) — Oshawa Dental Specialists</title>
+  <meta name="description" content="Learn about endodontic root canal therapy at Oshawa Dental Specialists. Signs, causes, and what an endodontic procedure involves." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue:    '#1A86E8',
+              blueDark:'#0F5FA8',
+              teal:    '#4BBFAA',
+              tealDark:'#339984',
+              navy:    '#0F2340',
+              navyMid: '#16325A',
+              offwhite:'#F7F9FC',
+              gold:    '#D4A017',
+              goldDark:'#B8860B',
+            }
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans:    ['Inter', 'system-ui', 'sans-serif'],
+          },
+          letterSpacing: {
+            tighter: '-0.03em',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; color: #1e2a38; background: #fff; }
+    h1,h2,h3 { font-family: 'Playfair Display', serif; }
+
+    /* Nav */
+    .nav-scrolled { background: rgba(15,35,64,0.97) !important; box-shadow: 0 2px 24px rgba(0,0,0,0.18); }
+
+    /* Layered shadow utility */
+    .shadow-layered {
+      box-shadow:
+        0 1px 2px rgba(26,134,232,0.06),
+        0 4px 12px rgba(26,134,232,0.10),
+        0 16px 40px rgba(15,35,64,0.12);
+    }
+
+    /* Scroll fade-in */
+    .js .fade-in { opacity:0; transform:translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .js .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    /* Mobile menu */
+    #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; max-height:0; opacity:0; overflow:hidden; }
+    #mobile-menu.open { max-height:400px; opacity:1; }
+
+    /* Dropdown */
+    .dropdown-menu { transition: opacity 0.2s ease, transform 0.2s ease; }
+
+    /* Content prose styles */
+    .prose-content p {
+      color: #1e2a38;
+      font-size: 15px;
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+    .prose-content .section-heading {
+      color: #4BBFAA;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+    .prose-content .bullet-item {
+      color: #4BBFAA;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 0;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-navy nav-scrolled">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Oshawa Dental Specialists home">
+        <img src="brand_assets/dental6-01-blue.png" alt="" class="h-10 w-auto brightness-0 invert" />
+        <img src="brand_assets/dental-text-skinny-blue.png" alt="Oshawa Dental Specialists" class="h-9 w-auto brightness-0 invert" />
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <!-- Services dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-white/90 hover:text-white font-medium text-sm transition-colors focus:outline-none focus-visible:underline" aria-haspopup="true" aria-expanded="false">
+            Services
+            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-3 w-52 bg-white rounded-xl shadow-layered opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-1 z-50 overflow-hidden">
+            <div class="py-2">
+              <a href="dental-implants.html" class="block px-5 py-3 text-sm text-brand-navy hover:bg-brand-offwhite hover:text-brand-blue transition-colors font-medium">Dental Implants</a>
+              <a href="periodontics.html" class="block px-5 py-3 text-sm text-brand-navy hover:bg-brand-offwhite hover:text-brand-blue transition-colors font-medium">Periodontics</a>
+              <a href="endodontics.html" class="block px-5 py-3 text-sm text-brand-navy hover:bg-brand-offwhite hover:text-brand-blue transition-colors font-medium">Endodontics</a>
+            </div>
+          </div>
+        </div>
+        <a href="referrals.html" class="text-white/90 hover:text-white font-medium text-sm transition-colors focus-visible:underline">Referrals</a>
+        <a href="appointments.html"
+           class="ml-2 inline-flex items-center px-5 py-2.5 rounded-full bg-brand-blue hover:bg-brand-blueDark text-white text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+           style="box-shadow:0 2px 12px rgba(26,134,232,0.35)">
+          Book an Appointment
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-white">
+        <svg id="icon-open"  class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden bg-brand-navy/95 rounded-2xl mb-4 overflow-hidden">
+      <div class="px-5 py-4 flex flex-col gap-1">
+        <p class="text-white/50 text-xs font-semibold uppercase tracking-widest pt-1 pb-2">Services</p>
+        <a href="dental-implants.html" class="text-white/85 hover:text-white py-2 text-sm font-medium transition-colors">Dental Implants</a>
+        <a href="periodontics.html" class="text-white/85 hover:text-white py-2 text-sm font-medium transition-colors">Periodontics</a>
+        <a href="endodontics.html" class="text-white py-2 text-sm font-medium transition-colors">Endodontics</a>
+        <hr class="border-white/10 my-2" />
+        <a href="referrals.html" class="text-white/85 hover:text-white py-2 text-sm font-medium transition-colors">Referrals</a>
+        <a href="appointments.html" class="mt-3 text-center px-5 py-3 rounded-full bg-brand-blue text-white text-sm font-semibold transition-colors hover:bg-brand-blueDark">Book an Appointment</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ CONTENT ═══════════════════════════════ -->
+<main id="main-content" class="pt-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+
+    <div class="prose-content fade-in" style="max-width: 720px;">
+
+      <!-- Page heading -->
+      <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-8 leading-tight" style="color:#0F2340;">Endodontics (Root Canal Therapy)</h1>
+
+      <!-- Intro paragraphs -->
+      <p>Endodontics is a specialized branch of dentistry that deals with the complex structures found inside the teeth. The Greek word "Endodontics" literally means "inside the tooth" and relates to the tooth pulp, tissues, nerves, and arterioles. Endodontists receive additional dental training after completing dental school to enable them to perform both complex and simple procedures, including root canal therapy.</p>
+
+      <p>Historically, a tooth with a diseased nerve would be removed immediately, but endodontists are now able to save the natural tooth in most cases. Generally, extracting the inner tooth structures, then sealing the resulting gap with a crown restores health and functionality to damaged teeth.</p>
+
+      <!-- Signs & symptoms section -->
+      <p class="section-heading">Signs and symptoms of endodontic problems:</p>
+
+      <div style="margin-bottom: 1.25rem;">
+        <span class="bullet-item">Inflammation and tenderness in the gums.</span>
+        <span class="bullet-item">Teeth that are sensitive to hot and cold foods.</span>
+        <span class="bullet-item">Tenderness when chewing and biting.</span>
+        <span class="bullet-item">Tooth discoloration.</span>
+        <span class="bullet-item">Unexplained pain in the nearby lymph nodes.</span>
+        <span class="bullet-item">Reasons for endodontic treatment</span>
+      </div>
+
+      <p>Endodontic treatment (or root canal therapy) is performed to save the natural tooth. In spite of the many advanced restorations available, most dentists agree that there is no substitute for healthy, natural teeth.</p>
+
+      <!-- Causes section -->
+      <p class="section-heading">Here are some of the main causes of inner tooth damage:</p>
+
+      <p><strong style="color:#1e2a38; font-weight:500;">Bacterial infections</strong> – Oral bacteria is the most common cause of endodontic problems. Bacteria invade the tooth pulp through tiny fissures in the teeth caused by tooth decay or injury. The resulting inflammation and bacterial infection jeopardize the affected tooth and may cause an abscess to form.</p>
+
+      <p><strong style="color:#1e2a38; font-weight:500;">Fractures and chips</strong> – When a large part of the surface or crown of the tooth has become completely detached, root canal therapy may be required. The removal of the crown portion leaves the pulp exposed, which can be debilitating painful and problematic.</p>
+    </div>
+
+    <!-- Image + text side by side section -->
+    <div class="fade-in" style="max-width: 720px; margin-top: 0;">
+      <div class="prose-content">
+
+        <!-- Float image right for the injuries/removals section -->
+        <div class="overflow-hidden" style="margin-bottom: 1.25rem;">
+          <div class="float-right ml-8 mb-4" style="width: 340px; flex-shrink: 0;">
+            <div class="rounded-2xl overflow-hidden shadow-layered">
+              <img src="brand_assets/pexels-photo-3845625.jpg"
+                   alt="Patient receiving endodontic treatment"
+                   class="w-full h-auto object-cover"
+                   loading="lazy" />
+            </div>
+          </div>
+
+          <p><strong style="color:#1e2a38; font-weight:500;">Injuries</strong> – Injuries to the teeth can be caused by a direct or indirect blow to the mouth area. Some injuries cause a tooth to become luxated or dislodged from its socket. Root canal therapy is often needed after the endodontist has successfully stabilized the injured tooth.</p>
+
+          <p><strong style="color:#1e2a38; font-weight:500;">Removals</strong> – If a tooth has been knocked clean out of the socket, it is important to rinse it and place it back into the socket as quickly as possible. If this is impossible, place the tooth in special dental solution (available at pharmacies) or in milk. These steps will keep the inner mechanisms of the tooth moist and alive while emergency dental treatment is sought. The tooth will be affixed in its socket using a special splint, and the endodontist will then perform root canal therapy to save the tooth.</p>
+
+          <div style="clear:both;"></div>
+        </div>
+
+        <!-- Procedure section -->
+        <p class="section-heading">What does an endodontic procedure involve?</p>
+
+        <p>Root canal therapy usually takes between one and three visits to complete. Complete X-rays of the teeth will be taken and examined before the treatment begins.</p>
+
+        <p>Initially, a local anesthetic will be administered, and a dental dam (protective sheet) will be placed to ensure that the surgical area remains free of saliva during the treatment. An opening will be created in the surface of the tooth, and the pulp will be completely removed using small handheld instruments.</p>
+
+        <p>The space will then be shaped, cleaned, and filled with gutta-percha. Gutta-percha is a biocompatible material that is somewhat similar to rubber. Cement will be applied on top to ensure that the root canals are completely sealed off. Usually, a temporary filling will be placed to restore functionality to the tooth prior to the permanent restoration procedure. During the final visit, a permanent restoration or crown will be placed.</p>
+
+        <p>If you have questions or concerns about endodontic procedures, please contact our office.</p>
+
+        <!-- Gold CTA -->
+        <a href="appointments.html"
+           class="inline-flex items-center gap-2 text-sm lg:text-base font-semibold uppercase tracking-wider transition-colors group"
+           style="color: #D4A017; margin-top: 0.5rem;">
+          <span class="group-hover:underline">Click here to book your appointment</span>
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer class="bg-brand-navy py-16" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+
+      <!-- Brand col -->
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <img src="brand_assets/dental6-01-blue.png" alt="" class="h-9 w-auto brightness-0 invert opacity-90" />
+        </div>
+        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">
+          675 King St E<br />Oshawa, ON L1H 1G4
+        </p>
+        <a href="https://g.page/r/oshawa-dental-specialists" target="_blank" rel="noopener noreferrer" class="text-brand-teal text-sm hover:text-white transition-colors font-medium focus-visible:underline">
+          Leave a Review
+        </a>
+      </div>
+
+      <!-- Services col -->
+      <div>
+        <h4 class="text-white text-xs font-semibold uppercase tracking-widest mb-5">Services</h4>
+        <ul class="space-y-3">
+          <li><a href="dental-implants.html" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Dental Implants</a></li>
+          <li><a href="periodontics.html" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Periodontics</a></li>
+          <li><a href="endodontics.html" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Endodontics</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick links col -->
+      <div>
+        <h4 class="text-white text-xs font-semibold uppercase tracking-widest mb-5">Quick Links</h4>
+        <ul class="space-y-3">
+          <li><a href="referrals.html" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Referrals</a></li>
+          <li><a href="appointments.html" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Book an Appointment</a></li>
+          <li><a href="index.html#location" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Location</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-white/30 text-xs font-light">&copy; 2024 Oshawa Dental Specialists. All rights reserved.</p>
+      <p class="text-white/20 text-xs font-light">675 King St E, Oshawa, ON · <a href="tel:+19056231234" class="hover:text-white/50 transition-colors focus-visible:underline">(905) 623-1234</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+  document.documentElement.classList.add('js');
+
+  // Nav always solid on this page
+  const navbar = document.getElementById('navbar');
+  navbar.classList.add('nav-scrolled');
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    mobileMenu.classList.toggle('open');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  fadeEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

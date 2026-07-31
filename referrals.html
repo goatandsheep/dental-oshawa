@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On-Line Referral — Oshawa Dental Specialists</title>
+  <meta name="description" content="Submit an online referral to Oshawa Dental Specialists. Fill in the referral form and our team will contact your patient to schedule an appointment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue:    '#1A86E8',
+              blueDark:'#0F5FA8',
+              teal:    '#4BBFAA',
+              tealDark:'#339984',
+              navy:    '#0F2340',
+              navyMid: '#16325A',
+              offwhite:'#F7F9FC',
+            }
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans:    ['Inter', 'system-ui', 'sans-serif'],
+          },
+          letterSpacing: {
+            tighter: '-0.03em',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; color: #1e2a38; background: #fff; }
+    h1,h2,h3 { font-family: 'Playfair Display', serif; }
+
+    /* Nav */
+    .nav-scrolled { background: rgba(15,35,64,0.97) !important; box-shadow: 0 2px 24px rgba(0,0,0,0.18); }
+
+    /* Layered shadow utility */
+    .shadow-layered {
+      box-shadow:
+        0 1px 2px rgba(26,134,232,0.06),
+        0 4px 12px rgba(26,134,232,0.10),
+        0 16px 40px rgba(15,35,64,0.12);
+    }
+
+    /* Scroll fade-in */
+    .js .fade-in { opacity:0; transform:translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .js .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    /* Mobile menu */
+    #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; max-height:0; opacity:0; overflow:hidden; }
+    #mobile-menu.open { max-height:400px; opacity:1; }
+
+    /* Dropdown */
+    .dropdown-menu { transition: opacity 0.2s ease, transform 0.2s ease; }
+
+    /* Form inputs */
+    .form-input {
+      width: 100%;
+      background: #fff;
+      border: 1.5px solid #e2e6ea;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: #1e2a38;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: #1A86E8;
+      box-shadow: 0 0 0 3px rgba(26,134,232,0.12);
+    }
+    .form-input::placeholder { color: #b0bec5; }
+
+    select.form-input {
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      color: #1e2a38;
+    }
+    select.form-input.placeholder-shown,
+    select.form-input[data-placeholder="true"] {
+      color: #b0bec5;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+
+    /* Input with icon */
+    .input-icon-wrap {
+      position: relative;
+    }
+    .input-icon-wrap .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #b0bec5;
+      pointer-events: none;
+    }
+    .input-icon-wrap .form-input {
+      padding-left: 44px;
+    }
+
+    /* Phone input */
+    .phone-wrap {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 1.5px solid #e2e6ea;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .phone-wrap:focus-within {
+      border-color: #1A86E8;
+      box-shadow: 0 0 0 3px rgba(26,134,232,0.12);
+    }
+    .phone-flag {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 14px 10px 14px 16px;
+      border-right: 1.5px solid #e2e6ea;
+      flex-shrink: 0;
+      cursor: default;
+    }
+    .phone-flag svg { width: 22px; height: 16px; }
+    .phone-flag span { font-size: 11px; color: #6b7280; }
+    .phone-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 14px 18px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: #1e2a38;
+    }
+    .phone-input::placeholder { color: #b0bec5; }
+
+    /* Select wrapper for chevron */
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap select {
+      padding-right: 44px;
+    }
+    .select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 6px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brand-navy nav-scrolled">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group" aria-label="Oshawa Dental Specialists home">
+        <img src="brand_assets/dental6-01-blue.png" alt="" class="h-10 w-auto brightness-0 invert" />
+        <img src="brand_assets/dental-text-skinny-blue.png" alt="Oshawa Dental Specialists" class="h-9 w-auto brightness-0 invert" />
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <!-- Services dropdown -->
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-white/90 hover:text-white font-medium text-sm transition-colors focus:outline-none focus-visible:underline" aria-haspopup="true" aria-expanded="false">
+            Services
+            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-3 w-52 bg-white rounded-xl shadow-layered opacity-0 invisible group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 translate-y-1 z-50 overflow-hidden">
+            <div class="py-2">
+              <a href="index.html#services" class="block px-5 py-3 text-sm text-brand-navy hover:bg-brand-offwhite hover:text-brand-blue transition-colors font-medium">Dental Implants</a>
+              <a href="index.html#services" class="block px-5 py-3 text-sm text-brand-navy hover:bg-brand-offwhite hover:text-brand-blue transition-colors font-medium">Periodontics</a>
+              <a href="index.html#services" class="block px-5 py-3 text-sm text-brand-navy hover:bg-brand-offwhite hover:text-brand-blue transition-colors font-medium">Endodontics</a>
+            </div>
+          </div>
+        </div>
+        <a href="referrals.html" class="text-white/90 hover:text-white font-medium text-sm transition-colors focus-visible:underline">Referrals</a>
+        <a href="appointments.html"
+           class="ml-2 inline-flex items-center px-5 py-2.5 rounded-full bg-brand-blue hover:bg-brand-blueDark text-white text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+           style="box-shadow:0 2px 12px rgba(26,134,232,0.35)">
+          Book an Appointment
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus-visible:ring-2 focus-visible:ring-white">
+        <svg id="icon-open"  class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden bg-brand-navy/95 rounded-2xl mb-4 overflow-hidden">
+      <div class="px-5 py-4 flex flex-col gap-1">
+        <p class="text-white/50 text-xs font-semibold uppercase tracking-widest pt-1 pb-2">Services</p>
+        <a href="index.html#services" class="text-white/85 hover:text-white py-2 text-sm font-medium transition-colors">Dental Implants</a>
+        <a href="index.html#services" class="text-white/85 hover:text-white py-2 text-sm font-medium transition-colors">Periodontics</a>
+        <a href="index.html#services" class="text-white/85 hover:text-white py-2 text-sm font-medium transition-colors">Endodontics</a>
+        <hr class="border-white/10 my-2" />
+        <a href="referrals.html" class="text-white/85 hover:text-white py-2 text-sm font-medium transition-colors">Referrals</a>
+        <a href="appointments.html" class="mt-3 text-center px-5 py-3 rounded-full bg-brand-blue text-white text-sm font-semibold transition-colors hover:bg-brand-blueDark">Book an Appointment</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ REFERRAL FORM ═══════════════════════════════ -->
+<main id="main-content" class="pt-20 bg-white">
+  <div class="max-w-2xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+
+    <!-- Header -->
+    <div class="text-center mb-12 fade-in">
+      <h1 class="text-3xl lg:text-4xl font-bold text-brand-navy tracking-wider uppercase mb-5">On-Line Referral</h1>
+      <p class="text-brand-teal text-base leading-relaxed max-w-xl mx-auto">
+        Please fill in the referral below and our team will contact your patient to schedule an appointment. Please e-mail any additional information/attachments to
+        <a href="mailto:info@dentaloshawa.ca" class="text-brand-teal hover:text-brand-tealDark underline underline-offset-2 transition-colors">info@dentaloshawa.ca</a> .
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form class="space-y-7 fade-in" novalidate aria-label="Online referral form">
+
+      <!-- Patient Name -->
+      <div>
+        <label for="patient-name" class="form-label">Patient Name <span aria-hidden="true">*</span></label>
+        <input id="patient-name" name="patient-name" type="text" required autocomplete="off"
+               placeholder="Full Name" class="form-input" />
+      </div>
+
+      <!-- Patient Phone Number -->
+      <div>
+        <label for="patient-phone" class="form-label">Patient Phone number <span aria-hidden="true">*</span></label>
+        <div class="phone-wrap">
+          <div class="phone-flag" aria-hidden="true">
+            <svg viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="22" height="16" rx="2" fill="#fff"/>
+              <rect width="5.5" height="16" fill="#D52B1E"/>
+              <rect x="16.5" width="5.5" height="16" fill="#D52B1E"/>
+              <path d="M11 3.5l-.7 1.4-1.55-.2.8 1.3-1.05.9 1.5.15L10 8.5l1-1 1 1-.05-1.4 1.5-.15-1.05-.9.8-1.3-1.55.2z" fill="#D52B1E"/>
+              <rect x="10.45" y="8.5" width="1.1" height="2" fill="#D52B1E"/>
+            </svg>
+            <span>▾</span>
+          </div>
+          <input id="patient-phone" name="patient-phone" type="tel" required autocomplete="off"
+                 placeholder="Enter phone number" class="phone-input" />
+        </div>
+      </div>
+
+      <!-- Patient's Email Address -->
+      <div>
+        <label for="patient-email" class="form-label">Patient's Email Address</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon" aria-hidden="true">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </span>
+          <input id="patient-email" name="patient-email" type="email" autocomplete="off"
+                 placeholder="Enter Patient Email" class="form-input" />
+        </div>
+      </div>
+
+      <!-- Purpose of Referral -->
+      <div>
+        <label for="purpose" class="form-label">Purpose of Referral <span aria-hidden="true">*</span></label>
+        <div class="select-wrap">
+          <select id="purpose" name="purpose" required class="form-input">
+            <option value="" disabled selected></option>
+            <option value="implants">Dental Implants</option>
+            <option value="periodontics">Periodontics</option>
+            <option value="endodontics">Endodontics (Root Canal Therapy)</option>
+            <option value="consultation">General Consultation</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Patient History -->
+      <div>
+        <label for="patient-history" class="form-label">Patient History</label>
+        <div class="select-wrap">
+          <select id="patient-history" name="patient-history" class="form-input">
+            <option value="" disabled selected></option>
+            <option value="new">New Patient</option>
+            <option value="existing">Existing Patient</option>
+            <option value="previous">Previous Treatment</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Patient Symptoms -->
+      <div>
+        <label for="patient-symptoms" class="form-label">Patient Symptoms</label>
+        <div class="select-wrap">
+          <select id="patient-symptoms" name="patient-symptoms" class="form-input">
+            <option value="" disabled selected></option>
+            <option value="pain">Pain / Sensitivity</option>
+            <option value="swelling">Swelling</option>
+            <option value="bleeding">Bleeding Gums</option>
+            <option value="mobility">Tooth Mobility</option>
+            <option value="asymptomatic">Asymptomatic</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Special Patient Concerns -->
+      <div>
+        <label for="special-concerns" class="form-label">Special Patient Concerns</label>
+        <div class="select-wrap">
+          <select id="special-concerns" name="special-concerns" class="form-input">
+            <option value="" disabled selected></option>
+            <option value="anxiety">Dental Anxiety</option>
+            <option value="allergies">Allergies</option>
+            <option value="medical">Medical Conditions</option>
+            <option value="medications">Medications</option>
+            <option value="none">None</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Referring Dentist/Practitioner -->
+      <div>
+        <label for="referring-dentist" class="form-label">Referring Dentist/Practitioner <span aria-hidden="true">*</span></label>
+        <input id="referring-dentist" name="referring-dentist" type="text" required autocomplete="off"
+               placeholder="Full Name" class="form-input" />
+      </div>
+
+      <!-- Referral Contact Info -->
+      <div>
+        <label for="referral-contact" class="form-label">Referral Contact Info (i.e. your e-mail and/or phone #) <span aria-hidden="true">*</span></label>
+        <input id="referral-contact" name="referral-contact" type="text" required autocomplete="off"
+               placeholder="" class="form-input" />
+      </div>
+
+      <!-- Additional Information -->
+      <div>
+        <label for="additional-info" class="form-label">Additional Information</label>
+        <textarea id="additional-info" name="additional-info" rows="5"
+                  placeholder="" class="form-input resize-none"></textarea>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+              class="w-full py-4 rounded-xl bg-brand-navy hover:bg-black text-white font-semibold text-base transition-colors focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
+              style="box-shadow:0 4px 20px rgba(15,35,64,0.2)">
+        Submit
+      </button>
+
+    </form>
+
+    <!-- Bottom spacing -->
+    <div class="pb-8"></div>
+
+  </div>
+</main>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer class="bg-brand-navy py-16" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+
+      <!-- Brand col -->
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <img src="brand_assets/dental6-01-blue.png" alt="" class="h-9 w-auto brightness-0 invert opacity-90" />
+        </div>
+        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">
+          675 King St E<br />Oshawa, ON L1H 1G4
+        </p>
+        <a href="https://g.page/r/oshawa-dental-specialists" target="_blank" rel="noopener noreferrer" class="text-brand-teal text-sm hover:text-white transition-colors font-medium focus-visible:underline">
+          Leave a Review
+        </a>
+      </div>
+
+      <!-- Services col -->
+      <div>
+        <h4 class="text-white text-xs font-semibold uppercase tracking-widest mb-5">Services</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html#services" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Dental Implants</a></li>
+          <li><a href="index.html#services" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Endodontics</a></li>
+          <li><a href="index.html#services" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Periodontics</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick links col -->
+      <div>
+        <h4 class="text-white text-xs font-semibold uppercase tracking-widest mb-5">Quick Links</h4>
+        <ul class="space-y-3">
+          <li><a href="referrals.html" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Referrals</a></li>
+          <li><a href="appointments.html" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Book an Appointment</a></li>
+          <li><a href="index.html#location" class="text-white/55 text-sm hover:text-white transition-colors focus-visible:underline">Location</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-white/30 text-xs font-light">&copy; 2024 Oshawa Dental Specialists. All rights reserved.</p>
+      <p class="text-white/20 text-xs font-light">675 King St E, Oshawa, ON · <a href="tel:+19056231234" class="hover:text-white/50 transition-colors focus-visible:underline">(905) 623-1234</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+  document.documentElement.classList.add('js');
+
+  // Nav always solid on this page
+  const navbar = document.getElementById('navbar');
+  navbar.classList.add('nav-scrolled');
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    mobileMenu.classList.toggle('open');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Form submit
+  document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = 'Referral received — we\'ll be in touch!';
+    btn.disabled = true;
+    btn.style.background = '#339984';
+  });
+</script>
+
+</body>
+</html>
