@@ -71,18 +71,6 @@
         0 16px 40px rgba(15, 35, 64, 0.12);
     }
 
-    /* Scroll fade-in */
-    .js .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .js .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* Mobile menu */
     #mobile-menu {
       transition: max-height 0.3s ease, opacity 0.3s ease;
@@ -268,7 +256,7 @@
     <div class="relative z-10 max-w-xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
 
       <!-- Header -->
-      <div class="text-center mb-10 fade-in">
+      <div class="text-center mb-10">
         <h1 class="text-4xl lg:text-5xl font-semibold text-brand-navy tracking-tight mb-5">Book an Appointment</h1>
         <p class="text-brand-navy/70 font-light text-base leading-relaxed max-w-lg mx-auto">
           Please fill in the intake form below and our team will contact you to schedule an appointment. Please e-mail
@@ -280,7 +268,7 @@
       </div>
 
       <!-- Form -->
-      <form class="space-y-6 fade-in" novalidate aria-label="Appointment intake form">
+      <form class="space-y-6" novalidate aria-label="Appointment intake form">
 
         <!-- Patient's Full Name -->
         <div>
@@ -463,8 +451,6 @@
 
   <!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
   <script>
-    document.documentElement.classList.add('js');
-
     // Nav is always solid on this page (no hero)
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -497,18 +483,6 @@
         menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
-
-    // Scroll fade-in
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    fadeEls.forEach(el => observer.observe(el));
 
     // Phone number auto-formatter — US format: (###) ###-####
     function formatPhone(input) {

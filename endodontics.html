@@ -53,10 +53,6 @@
         0 16px 40px rgba(15,35,64,0.12);
     }
 
-    /* Scroll fade-in */
-    .js .fade-in { opacity:0; transform:translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .js .fade-in.visible { opacity:1; transform:translateY(0); }
-
     /* Mobile menu */
     #mobile-menu { transition: max-height 0.3s ease, opacity 0.3s ease; max-height:0; opacity:0; overflow:hidden; }
     #mobile-menu.open { max-height:400px; opacity:1; }
@@ -85,8 +81,22 @@
       font-size: 15px;
       font-weight: 300;
       line-height: 1.75;
-      margin-bottom: 0;
-      display: block;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      list-style: none;
+    }
+    .prose-content .bullet-item::before {
+      content: '';
+      display: inline-block;
+      flex-shrink: 0;
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17' fill='none'%3E%3Crect width='17' height='17' rx='4' fill='%234BBFAA' fill-opacity='0.15'/%3E%3Cpath d='M4.5 8.5l2.5 2.5 5-5' stroke='%234BBFAA' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   </style>
 </head>
@@ -153,11 +163,21 @@
 <main id="main-content" class="pt-20 bg-white">
   <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
 
-    <div class="prose-content fade-in" style="max-width: 720px;">
+    <div class="prose-content" style="max-width: 1024px;">
 
       <!-- Page heading -->
       <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-8 leading-tight" style="color:#0F2340;">Endodontics (Root Canal Therapy)</h1>
 
+
+        <div class="overflow-hidden" style="margin-bottom: 1.25rem;">
+          <div class="float-right ml-8 mb-4" style="width: 340px; flex-shrink: 0;">
+            <div class="rounded-2xl overflow-hidden shadow-layered">
+              <img src="brand_assets/pexels-photo-3845625.jpg"
+                   alt="Patient receiving endodontic treatment"
+                   class="w-full h-auto object-cover"
+                   loading="lazy" />
+            </div>
+          </div>
       <!-- Intro paragraphs -->
       <p>Endodontics is a specialized branch of dentistry that deals with the complex structures found inside the teeth. The Greek word "Endodontics" literally means "inside the tooth" and relates to the tooth pulp, tissues, nerves, and arterioles. Endodontists receive additional dental training after completing dental school to enable them to perform both complex and simple procedures, including root canal therapy.</p>
 
@@ -166,13 +186,14 @@
       <!-- Signs & symptoms section -->
       <p class="section-heading">Signs and symptoms of endodontic problems:</p>
 
-      <div style="margin-bottom: 1.25rem;">
-        <span class="bullet-item">Inflammation and tenderness in the gums.</span>
-        <span class="bullet-item">Teeth that are sensitive to hot and cold foods.</span>
-        <span class="bullet-item">Tenderness when chewing and biting.</span>
-        <span class="bullet-item">Tooth discoloration.</span>
-        <span class="bullet-item">Unexplained pain in the nearby lymph nodes.</span>
-        <span class="bullet-item">Reasons for endodontic treatment</span>
+      <ul style="margin-bottom: 1.25rem; list-style: none; padding-left: 0;">
+        <li class="bullet-item">Inflammation and tenderness in the gums.</li>
+        <li class="bullet-item">Teeth that are sensitive to hot and cold foods.</li>
+        <li class="bullet-item">Tenderness when chewing and biting.</li>
+        <li class="bullet-item">Tooth discoloration.</li>
+        <li class="bullet-item">Unexplained pain in the nearby lymph nodes.</li>
+        <li class="bullet-item">Reasons for endodontic treatment</li>
+      </ul>
       </div>
 
       <p>Endodontic treatment (or root canal therapy) is performed to save the natural tooth. In spite of the many advanced restorations available, most dentists agree that there is no substitute for healthy, natural teeth.</p>
@@ -186,19 +207,11 @@
     </div>
 
     <!-- Image + text side by side section -->
-    <div class="fade-in" style="max-width: 720px; margin-top: 0;">
+    <div class="" style="max-width: 1024px; margin-top: 0;">
       <div class="prose-content">
 
         <!-- Float image right for the injuries/removals section -->
         <div class="overflow-hidden" style="margin-bottom: 1.25rem;">
-          <div class="float-right ml-8 mb-4" style="width: 340px; flex-shrink: 0;">
-            <div class="rounded-2xl overflow-hidden shadow-layered">
-              <img src="brand_assets/pexels-photo-3845625.jpg"
-                   alt="Patient receiving endodontic treatment"
-                   class="w-full h-auto object-cover"
-                   loading="lazy" />
-            </div>
-          </div>
 
           <p><strong style="color:#1e2a38; font-weight:500;">Injuries</strong> – Injuries to the teeth can be caused by a direct or indirect blow to the mouth area. Some injuries cause a tooth to become luxated or dislodged from its socket. Root canal therapy is often needed after the endodontist has successfully stabilized the injured tooth.</p>
 
@@ -283,8 +296,6 @@
 
 <!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
 <script>
-  document.documentElement.classList.add('js');
-
   // Nav always solid on this page
   const navbar = document.getElementById('navbar');
   navbar.classList.add('nav-scrolled');
@@ -312,17 +323,6 @@
     });
   });
 
-  // Scroll fade-in
-  const fadeEls = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  fadeEls.forEach(el => observer.observe(el));
 </script>
 
 </body>

@@ -71,19 +71,7 @@
         0 16px 40px rgba(15, 35, 64, 0.12);
     }
 
-    /* Scroll fade-in */
-    .js .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
 
-    .js .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Mobile menu */
     #mobile-menu {
       transition: max-height 0.3s ease, opacity 0.3s ease;
       max-height: 0;
@@ -280,7 +268,7 @@
     <div class="max-w-2xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
 
       <!-- Header -->
-      <div class="text-center mb-12 fade-in">
+      <div class="text-center mb-12">
         <h1 class="text-3xl lg:text-4xl font-bold text-brand-navy tracking-wider uppercase mb-5">On-Line Referral</h1>
         <p class="text-brand-teal text-base leading-relaxed max-w-xl mx-auto">
           Please fill in the referral below and our team will contact your patient to schedule an appointment. Please
@@ -292,7 +280,7 @@
       </div>
 
       <!-- Form -->
-      <form class="space-y-7 fade-in" novalidate aria-label="Online referral form">
+      <form class="space-y-7" novalidate aria-label="Online referral form">
 
         <!-- Patient Name -->
         <div>
@@ -305,8 +293,8 @@
         <div>
           <label for="patient-phone" class="form-label">Patient Phone number <span aria-hidden="true">*</span></label>
           <input id="patient-phone" name="patient-phone" type="tel" required autocomplete="tel"
-            placeholder="(555) 555-5555" class="form-input phone-input"
-            pattern="\(\d{3}\) \d{3}-\d{4}" maxlength="14" />
+            placeholder="(555) 555-5555" class="form-input phone-input" pattern="\(\d{3}\) \d{3}-\d{4}"
+            maxlength="14" />
         </div>
 
         <!-- Patient's Email Address -->
@@ -330,10 +318,20 @@
           <div class="select-wrap">
             <select id="purpose" name="purpose" required class="form-input">
               <option value="" disabled selected></option>
-              <option value="implants">Dental Implants</option>
-              <option value="periodontics">Periodontics</option>
-              <option value="endodontics">Endodontics (Root Canal Therapy)</option>
-              <option value="consultation">General Consultation</option>
+              <option value="Crown Lengthening">Crown Lengthening (indicate below)</option>
+              <option value="Dental Implants">Dental Implants Consult</option>
+              <option value="Endo">Endo Consult</option>
+              <option value="Gum Recession">Gum Recession Consult</option>
+              <option value="Mucogingival Defects / Recession">Mucogingival Defects / Recession (indicate below)
+              </option>
+              <option value="Periodontal">Periodontal Consult</option>
+              <option value="Preprosthetic / Orthodontic Considerations">Preprosthetic / Orthodontic Considerations
+                (indicate below)</option>
+              <option value="Ridge Augmentation">Ridge Augmentation (indicate below)</option>
+              <option value="Tissue Recontouring">Tissue Recontouring (indicate below)</option>
+              <option value="TMJ/MPD">TMJ / MPD Symptoms</option>
+              <option value="Vestibular Extension">Vestibular Extension (indicate below)</option>
+              <option value="Other">Other (indicate below)</option>
             </select>
           </div>
         </div>
@@ -344,9 +342,10 @@
           <div class="select-wrap">
             <select id="patient-history" name="patient-history" class="form-input">
               <option value="" disabled selected></option>
-              <option value="new">New Patient</option>
-              <option value="existing">Existing Patient</option>
-              <option value="previous">Previous Treatment</option>
+              <option value="Analgesic">Analgesic prescribed</option>
+              <option value="Antibiotic">Antibiotic prescribed</option>
+              <option value="Periapicals">Recent Full Mouth Periapicals</option>
+              <option value="Scaling">Recent Scaling / Root Planning</option>
             </select>
           </div>
         </div>
@@ -357,12 +356,17 @@
           <div class="select-wrap">
             <select id="patient-symptoms" name="patient-symptoms" class="form-input">
               <option value="" disabled selected></option>
-              <option value="pain">Pain / Sensitivity</option>
-              <option value="swelling">Swelling</option>
-              <option value="bleeding">Bleeding Gums</option>
-              <option value="mobility">Tooth Mobility</option>
-              <option value="asymptomatic">Asymptomatic</option>
-              <option value="other">Other</option>
+              <option value="surgery">Endodontic surgery may be necessary. Evaluate.</option>
+              <option value="restoration">Endodontic treatment is necessary for restoration</option>
+              <option value="treatment">Endodontic treatment may be necessary. Evaluate.</option>
+              <option value="other">Other (indicate below)</option>
+              <option value="pain">Patient has pain, swelling, or sensitivity. Evaluate.</option>
+              <option value="toothache">Patient has vague toothache. Evaluate.</option>
+              <option value="pulp">Pulp exposed and is: vital, deviate, questionable</option>
+              <option value="radiolucency">Radiograph reveals apical radiolucency</option>
+              <option value="open">Tooth is open for drainage</option>
+              <option value="loss">Tooth loss</option>
+              <option value="injury">Traumatic injury: fracture, luxation, avulsion </option>
             </select>
           </div>
         </div>
@@ -373,11 +377,12 @@
           <div class="select-wrap">
             <select id="special-concerns" name="special-concerns" class="form-input">
               <option value="" disabled selected></option>
-              <option value="anxiety">Dental Anxiety</option>
-              <option value="allergies">Allergies</option>
-              <option value="medical">Medical Conditions</option>
-              <option value="medications">Medications</option>
-              <option value="none">None</option>
+              <option value="Aesthetics">Aesthetics</option>
+              <option value="Apprehension">Apprehension</option>
+              <option value="Discomfort">Discomfort</option>
+              <option value="Other">Other (detail below)</option>
+              <option value="Time">Time loss</option>
+              <option value="Tooth">Tooth loss</option>
             </select>
           </div>
         </div>
@@ -484,8 +489,6 @@
 
   <!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
   <script>
-    document.documentElement.classList.add('js');
-
     // Nav always solid on this page
     const navbar = document.getElementById('navbar');
     navbar.classList.add('nav-scrolled');
@@ -512,18 +515,6 @@
         menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
-
-    // Scroll fade-in
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    fadeEls.forEach(el => observer.observe(el));
 
     // Phone number auto-formatter — US format: (###) ###-####
     function formatPhone(input) {

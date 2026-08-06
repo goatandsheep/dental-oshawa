@@ -73,18 +73,6 @@
         0 16px 40px rgba(15, 35, 64, 0.12);
     }
 
-    /* Scroll fade-in */
-    .js .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .js .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* Mobile menu */
     #mobile-menu {
       transition: max-height 0.3s ease, opacity 0.3s ease;
@@ -192,7 +180,7 @@
     <div class="grid lg:grid-cols-[1fr_42%] min-h-[calc(100vh-80px)]">
 
       <!-- Left Column: Text Content -->
-      <div class="flex items-center px-8 lg:px-16 xl:px-24 py-20 lg:py-28 fade-in">
+      <div class="flex items-center px-8 lg:px-16 xl:px-24 py-20 lg:py-28">
         <div class="max-w-xl">
           <h1 class="text-4xl lg:text-5xl font-bold tracking-tight mb-8 leading-tight" style="color:#0F2340;">
             Periodontics</h1>
@@ -217,7 +205,7 @@
       </div>
 
       <!-- Right Column: Image flush to edge -->
-      <div class="fade-in relative overflow-hidden" style="min-height: 500px;">
+      <div class="relative overflow-hidden" style="min-height: 500px;">
         <img src="brand_assets/pexels-photo-3845682.jpg" alt="Periodontal treatment being performed"
           class="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
       </div>
@@ -290,8 +278,6 @@
 
   <!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
   <script>
-    document.documentElement.classList.add('js');
-
     // Nav always solid on this page
     const navbar = document.getElementById('navbar');
     navbar.classList.add('nav-scrolled');
@@ -319,17 +305,6 @@
       });
     });
 
-    // Scroll fade-in
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    fadeEls.forEach(el => observer.observe(el));
   </script>
 
 </body>
