@@ -649,9 +649,9 @@
       <form class="space-y-5" novalidate aria-label="Contact form">
         <div class="grid md:grid-cols-2 gap-5">
           <div>
-            <label for="full-name" class="block text-white/80 text-sm font-medium mb-2">Full name <span
+            <label for="patient-name" class="block text-white/80 text-sm font-medium mb-2">Full name <span
                 aria-hidden="true">*</span></label>
-            <input id="full-name" name="full-name" type="text" required autocomplete="name" placeholder="Your Name"
+            <input id="patient" name="patient-name" type="text" required autocomplete="name" placeholder="Your Name"
               class="form-input" />
           </div>
           <div>
@@ -676,9 +676,10 @@
         <div style="display:none;" aria-hidden="true">
           <input type="text" name="hp_field" tabindex="-1" autocomplete="off">
         </div>
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEIRV-DF9vES04BY"></div>
-        <button type="submit"
-          class="w-full py-4 rounded-xl bg-brand-navy hover:bg-black text-white font-semibold text-base transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEIRV-DF9vES04BY" data-error-callback="disableSubmit"
+          data-expired-callback="disableSubmit"></div>
+        <button type="submit" id="submit-btn"
+          class="w-full py-4 rounded-xl bg-brand-navy hover:bg-black disabled:bg-gray-400 disabled:text-white/70 disabled:cursor-not-allowed text-white font-semibold text-base transition-all focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
           style="box-shadow:0 4px 20px rgba(15,35,64,0.3)">
           Submit Inquiry
         </button>
@@ -856,6 +857,7 @@
 
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
+      data.turnstileToken = data['cf-turnstile-response'];
       data.formName = "General Contact Inquiry";
 
       try {
@@ -869,18 +871,21 @@
         });
 
         btn.textContent = 'Message sent — we\'ll be in touch!';
-        btn.style.background = '#339984';
       } catch (error) {
         console.error('Error!', error.message);
         btn.textContent = 'Error sending message. Please call us.';
-        btn.style.background = '#e53e3e';
         setTimeout(() => {
           btn.disabled = false;
           btn.textContent = originalBtnText;
-          btn.style.background = '';
         }, 5000);
       }
     });
+    function enableSubmit() {
+      document.getElementById("submit-btn").disabled = false;
+    }
+    function disableSubmit() {
+      document.getElementById("submit-btn").disabled = true;
+    }
   </script>
 </body>
 
