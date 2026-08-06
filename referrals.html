@@ -410,6 +410,10 @@
             class="form-input resize-none"></textarea>
         </div>
 
+        <div style="display:none;" aria-hidden="true">
+          <input type="text" name="hp_field" tabindex="-1" autocomplete="off">
+        </div>
+
         <!-- Submit -->
         <button type="submit"
           class="w-full py-4 rounded-xl bg-brand-navy hover:bg-black text-white font-semibold text-base transition-colors focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
@@ -530,12 +534,48 @@
     document.querySelectorAll('.phone-input').forEach(formatPhone);
 
     // Form submit
-    document.querySelector('form').addEventListener('submit', (e) => {
+    const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL';
+
+    document.querySelector('form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn = e.target.querySelector('button[type=submit]');
-      btn.textContent = 'Referral received — we\'ll be in touch!';
+      const form = e.target;
+      const btn = form.querySelector('button[type=submit]');
+      const originalBtnText = btn.textContent;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      btn.textContent = 'Sending...';
       btn.disabled = true;
-      btn.style.background = '#339984';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      data.formName = "Online Referral Form";
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        btn.textContent = 'Referral received — we\'ll be in touch!';
+        btn.style.background = '#339984';
+      } catch (error) {
+        console.error('Error!', error.message);
+        btn.textContent = 'Error sending referral. Please call us.';
+        btn.style.background = '#e53e3e';
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = originalBtnText;
+          btn.style.background = '';
+        }, 5000);
+      }
     });
   </script>
 
