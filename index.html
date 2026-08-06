@@ -674,8 +674,8 @@
         </div>
         <div>
           <label for="phone" class="block text-white/80 text-sm font-medium mb-2">Phone</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Your Phone Number"
-            class="form-input" />
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555"
+            class="form-input phone-input" pattern="\(\d{3}\) \d{3}-\d{4}" maxlength="14" />
         </div>
         <div>
           <label for="message" class="block text-white/80 text-sm font-medium mb-2">Message <span
@@ -845,7 +845,18 @@
     }, { threshold: 0.12 });
     fadeEls.forEach(el => observer.observe(el));
 
-    // Form submission placeholder
+    // Phone number auto-formatter — US format: (###) ###-####
+    function formatPhone(input) {
+      input.addEventListener('input', () => {
+        const digits = input.value.replace(/\D/g, '').slice(0, 10);
+        let formatted = '';
+        if (digits.length > 0) formatted = '(' + digits.slice(0, 3);
+        if (digits.length >= 4) formatted += ') ' + digits.slice(3, 6);
+        if (digits.length >= 7) formatted += '-' + digits.slice(6, 10);
+        input.value = formatted;
+      });
+    }
+    document.querySelectorAll('.phone-input').forEach(formatPhone);
     document.querySelector('form').addEventListener('submit', (e) => {
       e.preventDefault();
       const btn = e.target.querySelector('button[type=submit]');

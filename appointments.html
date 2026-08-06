@@ -140,55 +140,9 @@
       letter-spacing: 0.01em;
     }
 
-    /* Phone input flag row */
-    .phone-wrap {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1.5px solid rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .phone-wrap:focus-within {
-      border-color: #1A86E8;
-      box-shadow: 0 0 0 3px rgba(26, 134, 232, 0.15);
-    }
-
-    .phone-flag {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 14px 12px 14px 16px;
-      border-right: 1.5px solid rgba(0, 0, 0, 0.07);
-      flex-shrink: 0;
-      cursor: default;
-    }
-
-    .phone-flag svg {
-      width: 22px;
-      height: 16px;
-    }
-
-    .phone-flag span {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
+    /* Phone input */
     .phone-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      padding: 14px 18px;
-      font-size: 15px;
-      font-family: 'Inter', sans-serif;
-      color: #1e2a38;
-    }
-
-    .phone-input::placeholder {
-      color: #9aada0;
+      width: 100%;
     }
 
     /* Select wrapper for chevron */
@@ -338,24 +292,9 @@
         <!-- Patient's Phone Number -->
         <div>
           <label for="patient-phone" class="form-label">Patient's Phone number <span aria-hidden="true">*</span></label>
-          <div class="phone-wrap">
-            <div class="phone-flag" aria-hidden="true">
-              <!-- Canadian flag SVG -->
-              <svg viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="22" height="16" rx="2" fill="#fff" />
-                <rect width="5.5" height="16" fill="#D52B1E" />
-                <rect x="16.5" width="5.5" height="16" fill="#D52B1E" />
-                <!-- maple leaf simplified -->
-                <path
-                  d="M11 3.5l-.7 1.4-1.55-.2.8 1.3-1.05.9 1.5.15L10 8.5l1-1 1 1-.05-1.4 1.5-.15-1.05-.9.8-1.3-1.55.2z"
-                  fill="#D52B1E" />
-                <rect x="10.45" y="8.5" width="1.1" height="2" fill="#D52B1E" />
-              </svg>
-              <span>▾</span>
-            </div>
-            <input id="patient-phone" name="patient-phone" type="tel" required autocomplete="tel"
-              placeholder="Enter phone number" class="phone-input" />
-          </div>
+          <input id="patient-phone" name="patient-phone" type="tel" required autocomplete="tel"
+            placeholder="(555) 555-5555" class="form-input phone-input"
+            pattern="\(\d{3}\) \d{3}-\d{4}" maxlength="14" />
         </div>
 
         <!-- Email Address -->
@@ -411,22 +350,9 @@
         <!-- Emergency Contact Phone -->
         <div>
           <label for="emergency-phone" class="form-label">Contact Phone</label>
-          <div class="phone-wrap">
-            <div class="phone-flag" aria-hidden="true">
-              <svg viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="22" height="16" rx="2" fill="#fff" />
-                <rect width="5.5" height="16" fill="#D52B1E" />
-                <rect x="16.5" width="5.5" height="16" fill="#D52B1E" />
-                <path
-                  d="M11 3.5l-.7 1.4-1.55-.2.8 1.3-1.05.9 1.5.15L10 8.5l1-1 1 1-.05-1.4 1.5-.15-1.05-.9.8-1.3-1.55.2z"
-                  fill="#D52B1E" />
-                <rect x="10.45" y="8.5" width="1.1" height="2" fill="#D52B1E" />
-              </svg>
-              <span>▾</span>
-            </div>
-            <input id="emergency-phone" name="emergency-phone" type="tel" autocomplete="off" placeholder=""
-              class="phone-input" />
-          </div>
+          <input id="emergency-phone" name="emergency-phone" type="tel" autocomplete="tel"
+            placeholder="(555) 555-5555" class="form-input phone-input"
+            pattern="\(\d{3}\) \d{3}-\d{4}" maxlength="14" />
         </div>
 
         <!-- Please select a service -->
@@ -584,7 +510,18 @@
     }, { threshold: 0.08 });
     fadeEls.forEach(el => observer.observe(el));
 
-    // Fix select color on change
+    // Phone number auto-formatter — US format: (###) ###-####
+    function formatPhone(input) {
+      input.addEventListener('input', () => {
+        const digits = input.value.replace(/\D/g, '').slice(0, 10);
+        let formatted = '';
+        if (digits.length > 0) formatted = '(' + digits.slice(0, 3);
+        if (digits.length >= 4) formatted += ') ' + digits.slice(3, 6);
+        if (digits.length >= 7) formatted += '-' + digits.slice(6, 10);
+        input.value = formatted;
+      });
+    }
+    document.querySelectorAll('.phone-input').forEach(formatPhone);
     document.querySelectorAll('select.form-input').forEach(sel => {
       sel.addEventListener('change', function () {
         this.style.color = this.value ? '#1e2a38' : '#9aada0';
