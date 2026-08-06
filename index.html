@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -675,6 +676,7 @@
         <div style="display:none;" aria-hidden="true">
           <input type="text" name="hp_field" tabindex="-1" autocomplete="off">
         </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEIRV-DF9vES04BY"></div>
         <button type="submit"
           class="w-full py-4 rounded-xl bg-brand-navy hover:bg-black text-white font-semibold text-base transition-colors focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
           style="box-shadow:0 4px 20px rgba(15,35,64,0.3)">
@@ -880,7 +882,6 @@
       }
     });
   </script>
-
 </body>
 
 </html>

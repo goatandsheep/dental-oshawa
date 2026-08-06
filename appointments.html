@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script>
     tailwind.config = {
       theme: {
@@ -281,8 +282,8 @@
         <div>
           <label for="patient-phone" class="form-label">Patient's Phone number <span aria-hidden="true">*</span></label>
           <input id="patient-phone" name="patient-phone" type="tel" required autocomplete="tel"
-            placeholder="(555) 555-5555" class="form-input phone-input"
-            pattern="\(\d{3}\) \d{3}-\d{4}" maxlength="14" />
+            placeholder="(555) 555-5555" class="form-input phone-input" pattern="\(\d{3}\) \d{3}-\d{4}"
+            maxlength="14" />
         </div>
 
         <!-- Email Address -->
@@ -338,9 +339,8 @@
         <!-- Emergency Contact Phone -->
         <div>
           <label for="emergency-phone" class="form-label">Contact Phone</label>
-          <input id="emergency-phone" name="emergency-phone" type="tel" autocomplete="tel"
-            placeholder="(555) 555-5555" class="form-input phone-input"
-            pattern="\(\d{3}\) \d{3}-\d{4}" maxlength="14" />
+          <input id="emergency-phone" name="emergency-phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555"
+            class="form-input phone-input" pattern="\(\d{3}\) \d{3}-\d{4}" maxlength="14" />
         </div>
 
         <!-- Please select a service -->
@@ -378,6 +378,7 @@
         <div style="display:none;" aria-hidden="true">
           <input type="text" name="hp_field" tabindex="-1" autocomplete="off">
         </div>
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEIRV-DF9vES04BY"></div>
 
         <!-- Submit -->
         <button type="submit"
@@ -554,7 +555,6 @@
       }
     });
   </script>
-
 </body>
 
 </html>
