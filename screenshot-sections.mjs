@@ -1,10 +1,10 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const puppeteer = require('C:/Users/veree/AppData/Roaming/nvm/v24.18.0/node_modules/puppeteer/lib/puppeteer/puppeteer.js');
+const puppeteer = require(`${process.env.USERPROFILE}/AppData/Roaming/nvm/v24.18.0/node_modules/puppeteer/lib/puppeteer/puppeteer.js`);
 import fs from 'fs';
 
 const browser = await puppeteer.launch({
-  executablePath: 'C:/Users/veree/.cache/puppeteer/chrome/win64-151.0.7922.47/chrome-win64/chrome.exe',
+  executablePath: `${process.env.USERPROFILE}/.cache/puppeteer/chrome/win64-151.0.7922.47/chrome-win64/chrome.exe`,
   args: ['--no-sandbox', '--disable-setuid-sandbox'],
 });
 const page = await browser.newPage();

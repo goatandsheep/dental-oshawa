@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const require = createRequire(import.meta.url);
-const puppeteer = require('C:/Users/veree/AppData/Roaming/nvm/v24.18.0/node_modules/puppeteer/lib/puppeteer/puppeteer.js');
+const puppeteer = require(`${process.env.USERPROFILE}/AppData/Roaming/nvm/v24.18.0/node_modules/puppeteer/lib/puppeteer/puppeteer.js`);
 
 const url   = process.argv[2] || 'http://localhost:3000';
 const label = process.argv[3] || '';
@@ -19,7 +19,7 @@ const filename = label ? `screenshot-${next}-${label}.png` : `screenshot-${next}
 const outPath  = path.join(dir, filename);
 
 const browser = await puppeteer.launch({
-  executablePath: 'C:/Users/veree/.cache/puppeteer/chrome/win64-151.0.7922.47/chrome-win64/chrome.exe',
+  executablePath: `${process.env.USERPROFILE}/.cache/puppeteer/chrome/win64-151.0.7922.47/chrome-win64/chrome.exe`,
   args: ['--no-sandbox','--disable-setuid-sandbox'],
 });
 
