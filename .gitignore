@@ -144,3 +144,6 @@ vite.config.ts.timestamp-*
 
 # ai
 temporary screenshots/
+
+# OS
+.DS_Store

@@ -602,15 +602,12 @@
       try {
         const response = await fetch(SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors', // Google Apps Script requires no-cors for simple redirects
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
         });
 
-        // With no-cors, we won't see the response body, but we can assume success
-        // if the fetch doesn't throw.
         btn.textContent = 'Request received — we\'ll be in touch!';
       } catch (error) {
         console.error('Error!', error.message);
