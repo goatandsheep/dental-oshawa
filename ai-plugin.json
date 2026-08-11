@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Oshawa Dental Specialists Forms",
+  "name_for_model": "oshawa_dental_specialists_forms",
+  "description_for_human": "Submit contact inquiries, referrals, and appointment requests to the Oshawa Dental Specialists website through a Google Apps Script-backed web app. The caller must be signed into Google in the relevant context for the request to succeed.",
+  "description_for_model": "Use this plugin to submit contact, referral, and appointment form data to the Oshawa Dental Specialists Google Apps Script web app. This integration relies on the current Google context, so the agent or caller must already be signed into Google in the relevant environment. It does not use a separate plugin-style OAuth flow for the form submission endpoints.",
+  "api": {
+    "type": "openapi",
+    "url": "https://dentaloshawa.ca/openapi.json",
+    "is_user_authenticated": false
+  },
+  "auth": {
+    "type": "none"
+  },
+  "contact_email": "support@dentaloshawa.ca",
+  "legal_info_url": "https://dentaloshawa.ca"
+}

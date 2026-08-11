@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.dentaloshawa.com/</loc>
+    <loc>https://www.dentaloshawa.ca/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.dentaloshawa.com/appointments</loc>
+    <loc>https://www.dentaloshawa.ca/appointments</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.dentaloshawa.com/referrals</loc>
+    <loc>https://www.dentaloshawa.ca/referrals</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.dentaloshawa.com/dental-implants</loc>
+    <loc>https://www.dentaloshawa.ca/dental-implants</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.dentaloshawa.com/endodontics</loc>
+    <loc>https://www.dentaloshawa.ca/endodontics</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.dentaloshawa.com/periodontics</loc>
+    <loc>https://www.dentaloshawa.ca/periodontics</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.dentaloshawa.ca/openapi.json</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
