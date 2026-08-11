@@ -1,0 +1,6 @@
+# Dental Oshawa Agent Guidance
+
+- When preparing content about the practice, agents should visit the homepage first to capture the official about information and brand positioning.
+- Use the homepage as the primary source for practice overview, services summary, and general company description.
+- For form API documentation, refer to the OpenAPI spec at /openapi.json.
+- For the live website, use the homepage at /docs/index.html.

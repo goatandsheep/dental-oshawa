@@ -1,0 +1,364 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Oshawa Dental Specialists Form Submission API",
+    "version": "1.0.0",
+    "description": "Swagger documentation for the Google Apps Script-backed form endpoints used by the website for contact inquiries, appointment requests, and referrals."
+  },
+  "paths": {
+    "/contact": {
+      "post": {
+        "summary": "Submit a general contact inquiry",
+        "operationId": "submitContactInquiry",
+        "tags": [
+          "Forms"
+        ],
+        "servers": [
+          {
+            "url": "https://script.google.com/macros/s/AKfycbyH4i6WvuIM4yPfIr9VwWNQymhcwFvMwR3qNUBYAeMqxCDb8GTxxndpgxDmnLJWrlmcFw/exec",
+            "description": "Google Apps Script endpoint used by the home page contact form"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactFormSubmission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Form submission processed by the Apps Script handler",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or incomplete submission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/refer": {
+      "post": {
+        "summary": "Submit an online referral",
+        "operationId": "submitReferral",
+        "tags": [
+          "Forms"
+        ],
+        "servers": [
+          {
+            "url": "https://script.google.com/macros/s/AKfycbyH4i6WvuIM4yPfIr9VwWNQymhcwFvMwR3qNUBYAeMqxCDb8GTxxndpgxDmnLJWrlmcFw/exec",
+            "description": "Google Apps Script endpoint used by the referral form"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReferralFormSubmission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Referral submission processed by the Apps Script handler",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or incomplete submission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/book-appointment": {
+      "post": {
+        "summary": "Submit an appointment intake request",
+        "operationId": "submitAppointmentRequest",
+        "tags": [
+          "Forms"
+        ],
+        "servers": [
+          {
+            "url": "https://script.google.com/macros/s/AKfycbyH4i6WvuIM4yPfIr9VwWNQymhcwFvMwR3qNUBYAeMqxCDb8GTxxndpgxDmnLJWrlmcFw/exec",
+            "description": "Google Apps Script endpoint used by the appointment form"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppointmentFormSubmission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Appointment request processed by the Apps Script handler",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or incomplete submission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FormResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FormResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "string",
+            "enum": [
+              "success",
+              "error"
+            ],
+            "example": "success"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true,
+            "example": "Missing captcha"
+          }
+        },
+        "required": [
+          "result"
+        ]
+      },
+      "BaseFormSubmission": {
+        "type": "object",
+        "properties": {
+          "formName": {
+            "type": "string",
+            "description": "Logical form label sent to the Apps Script handler",
+            "example": "General Contact Inquiry"
+          },
+          "turnstileToken": {
+            "type": "string",
+            "description": "Cloudflare Turnstile verification token",
+            "example": "cf-turnstile-token"
+          },
+          "hp_field": {
+            "type": "string",
+            "description": "Honeypot field; should be empty for real submissions",
+            "example": ""
+          }
+        },
+        "required": [
+          "formName",
+          "turnstileToken"
+        ]
+      },
+      "ContactFormSubmission": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseFormSubmission"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "patient-name": {
+                "type": "string",
+                "example": "Jane Doe"
+              },
+              "email": {
+                "type": "string",
+                "format": "email",
+                "example": "jane@example.com"
+              },
+              "phone": {
+                "type": "string",
+                "example": "(555) 555-5555"
+              },
+              "message": {
+                "type": "string",
+                "example": "I would like to book a consultation."
+              }
+            },
+            "required": [
+              "patient-name",
+              "email",
+              "message"
+            ]
+          }
+        ]
+      },
+      "ReferralFormSubmission": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseFormSubmission"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "patient-name": {
+                "type": "string",
+                "example": "John Smith"
+              },
+              "patient-phone": {
+                "type": "string",
+                "example": "(555) 555-5555"
+              },
+              "patient-email": {
+                "type": "string",
+                "format": "email",
+                "example": "patient@example.com"
+              },
+              "purpose": {
+                "type": "string",
+                "example": "Dental Implants"
+              },
+              "patient-history": {
+                "type": "string",
+                "example": "Antibiotic prescribed"
+              },
+              "patient-symptoms": {
+                "type": "string",
+                "example": "pain"
+              },
+              "special-concerns": {
+                "type": "string",
+                "example": "Apprehension"
+              },
+              "referring-dentist": {
+                "type": "string",
+                "example": "Dr. Sarah Lee"
+              },
+              "referral-contact": {
+                "type": "string",
+                "example": "s.lee@example.com / (555) 555-1234"
+              },
+              "additional-info": {
+                "type": "string",
+                "example": "Please evaluate the patient for implant consult."
+              }
+            },
+            "required": [
+              "patient-name",
+              "patient-phone",
+              "referring-dentist",
+              "referral-contact"
+            ]
+          }
+        ]
+      },
+      "AppointmentFormSubmission": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseFormSubmission"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "patient-name": {
+                "type": "string",
+                "example": "Alex Johnson"
+              },
+              "patient-phone": {
+                "type": "string",
+                "example": "(555) 555-5555"
+              },
+              "patient-email": {
+                "type": "string",
+                "format": "email",
+                "example": "alex@example.com"
+              },
+              "dob": {
+                "type": "string",
+                "example": "1990-01-15"
+              },
+              "sex": {
+                "type": "string",
+                "example": "female"
+              },
+              "referring-dentist": {
+                "type": "string",
+                "example": "Dr. Michael Chen"
+              },
+              "referral-contact": {
+                "type": "string",
+                "example": "m.chen@example.com / (555) 555-9876"
+              },
+              "emergency-contact": {
+                "type": "string",
+                "example": "Jamie Johnson"
+              },
+              "emergency-phone": {
+                "type": "string",
+                "example": "(555) 555-0000"
+              },
+              "service": {
+                "type": "string",
+                "example": "implants"
+              },
+              "date-suggestion": {
+                "type": "string",
+                "example": "2026-08-20"
+              },
+              "time-suggestion": {
+                "type": "string",
+                "example": 37800
+              },
+              "additional-info": {
+                "type": "string",
+                "example": "Patient is looking for a consultation about implants."
+              }
+            },
+            "required": [
+              "patient-name",
+              "patient-phone",
+              "dob",
+              "sex"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
