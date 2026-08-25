@@ -55,14 +55,20 @@ function doPost(e) {
 
     // Build the email body dynamically from form fields
     var emailBody = "New submission from: " + formName + "\n";
+    var emailBodyHTML = "<h1>New submission from: " + formName + "</h1><br><br>";
+
     emailBody += "Timestamp: " + new Date().toLocaleString() + "\n";
+    emailBodyHTML += "<strong>Timestamp:</strong> " + new Date().toLocaleString() + "<br><br>";
+
     emailBody += "------------------------------------------\n\n";
+    emailBodyHTML += "<hr><br>";
 
     for (var key in data) {
       if (key !== "formName") {
         // Format the labels (e.g., patient-name -> Patient Name)
         var label = key.replace(/-/g, ' ').replace(/\b\w/g, function (l) { return l.toUpperCase(); });
         emailBody += label + ": " + data[key] + "\n";
+        emailBodyHTML += "<strong>" + label + ":</strong> " + data[key] + "<br><br>";
       }
     }
 
@@ -72,7 +78,8 @@ function doPost(e) {
     MailApp.sendEmail({
       to: targetEmail,
       subject: "NEW FORM: " + formName + " - " + patientName,
-      body: emailBody
+      body: emailBody,
+      htmlBody: emailBodyHTML
     });
 
     return ContentService.createTextOutput(JSON.stringify({ "result": "success" }))
