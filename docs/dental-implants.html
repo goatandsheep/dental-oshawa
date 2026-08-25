@@ -8,6 +8,13 @@
   <meta name="description"
     content="Expert dental implant services at Oshawa Dental Specialists. Our experienced specialists restore your smile with state-of-the-art techniques." />
   <link rel="canonical" href="https://www.dentaloshawa.ca/dental-implants" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXS9HG641E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QXS9HG641E');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -377,6 +384,34 @@
         iconClose.classList.add('hidden');
         menuBtn.setAttribute('aria-expanded', 'false');
       });
+    });
+
+    function trackAnalyticsEvent(eventName, eventCategory, eventLabel) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, {
+          event_category: eventCategory,
+          event_label: eventLabel
+        });
+      }
+    }
+
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('a');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+
+      if (href.includes('appointments.html')) {
+        trackAnalyticsEvent('book_appointment_click', 'cta', 'appointment_link');
+      }
+      if (href.includes('referrals.html')) {
+        trackAnalyticsEvent('referral_click', 'cta', 'referral_link');
+      }
+      if (href.includes('tel:')) {
+        trackAnalyticsEvent('phone_click', 'contact', 'phone_link');
+      }
+      if (href.includes('maps.app.goo.gl') || href.includes('google.com/maps')) {
+        trackAnalyticsEvent('directions_click', 'contact', 'maps_link');
+      }
     });
 
   </script>
