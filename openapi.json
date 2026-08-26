@@ -15,7 +15,7 @@
         ],
         "servers": [
           {
-            "url": "https://script.google.com/macros/s/AKfycbyH4i6WvuIM4yPfIr9VwWNQymhcwFvMwR3qNUBYAeMqxCDb8GTxxndpgxDmnLJWrlmcFw/exec",
+            "url": "https://script.google.com/macros/s/AKfycbzYK4DCDpUK7hB_obVnvtHTWFLIpGqINHahDPIho0ngMFdDv8vkpQntsEwGmSzC0aaXag/exec",
             "description": "Google Apps Script endpoint used by the home page contact form"
           }
         ],
@@ -62,7 +62,7 @@
         ],
         "servers": [
           {
-            "url": "https://script.google.com/macros/s/AKfycbyH4i6WvuIM4yPfIr9VwWNQymhcwFvMwR3qNUBYAeMqxCDb8GTxxndpgxDmnLJWrlmcFw/exec",
+            "url": "https://script.google.com/macros/s/AKfycbzYK4DCDpUK7hB_obVnvtHTWFLIpGqINHahDPIho0ngMFdDv8vkpQntsEwGmSzC0aaXag/exec",
             "description": "Google Apps Script endpoint used by the referral form"
           }
         ],
@@ -109,7 +109,7 @@
         ],
         "servers": [
           {
-            "url": "https://script.google.com/macros/s/AKfycbyH4i6WvuIM4yPfIr9VwWNQymhcwFvMwR3qNUBYAeMqxCDb8GTxxndpgxDmnLJWrlmcFw/exec",
+            "url": "https://script.google.com/macros/s/AKfycbzYK4DCDpUK7hB_obVnvtHTWFLIpGqINHahDPIho0ngMFdDv8vkpQntsEwGmSzC0aaXag/exec",
             "description": "Google Apps Script endpoint used by the appointment form"
           }
         ],

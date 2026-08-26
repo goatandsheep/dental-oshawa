@@ -64,7 +64,7 @@ function doPost(e) {
     emailBodyHTML += "<hr><br>";
 
     for (var key in data) {
-      if (key !== "formName") {
+      if (key !== "formName" && key !== "hp_field" && key !== "turnstileToken" && key !== "cf-turnstile-response") {
         // Format the labels (e.g., patient-name -> Patient Name)
         var label = key.replace(/-/g, ' ').replace(/\b\w/g, function (l) { return l.toUpperCase(); });
         emailBody += label + ": " + data[key] + "\n";
